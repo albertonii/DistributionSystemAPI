@@ -6,7 +6,7 @@ const spain = require("../GeoJSON/countries/spain.json");
 dotenv.config();
 
 const app: Application = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT ?? 8080;
 
 app.disable("x-powered-by");
 
