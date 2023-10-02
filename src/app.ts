@@ -1,3 +1,4 @@
+import cors from "cors";
 import express, { Request, Response, Application } from "express";
 import dotenv from "dotenv";
 const spain = require("../GeoJSON/countries/spain.json");
@@ -7,6 +8,17 @@ dotenv.config();
 
 const app: Application = express();
 const port = process.env.PORT ?? 8080;
+
+// Add a list of allowed origins.
+// If you have more origins you would like to add, you can add them to the array below.
+const allowedOrigins = ["http://localhost:3000"];
+
+const options: cors.CorsOptions = {
+  origin: allowedOrigins,
+};
+app.use(cors(options)); /* NEW */
+
+app.use(express.json());
 
 app.disable("x-powered-by");
 
