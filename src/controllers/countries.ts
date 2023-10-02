@@ -12,4 +12,15 @@ export class CountryController {
     const countries = await CountryModel.getCountries();
     return countries;
   }
+
+  static async isLatLngInCountry(req: Request, res: Response) {
+    const { name } = req.params;
+    const { lat, lng } = req.query;
+    const isLatLngInCountry = await CountryModel.isLatLngInCountry(
+      name,
+      Number(lat),
+      Number(lng)
+    );
+    res.json(isLatLngInCountry);
+  }
 }

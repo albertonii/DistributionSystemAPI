@@ -5,3 +5,4 @@ export const countriesRouter = Router();
 
 countriesRouter.get("/", CountryController.getCountries);
 countriesRouter.get("/:name", CountryController.getCountry);
+countriesRouter.get("/:name/inside", CountryController.isLatLngInCountry);
