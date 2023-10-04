@@ -1,27 +1,29 @@
+import madrid from "../data/spain/autonomous_communities/madrid.json";
 import { Path } from "node-geometry-library/lib/SphericalUtil";
-import spain from "../data/countries/spain.json";
-// import spain from "../data/countries/spainv2.json";
 import { PolyUtil } from "node-geometry-library";
 
-// TODO: Falta Ceuta y Melilla por introducir en el mainland de la península.
-export class CountryModel {
-  static getCountry = async (name: string) => {
+export class CommunityModel {
+  static getCommunity = async (name: string) => {
     switch (name) {
-      case "spain":
-        return spain;
+      case "madrid":
+        return madrid;
       default:
         return {};
     }
   };
 
-  static getCountries = async () => {
-    return [spain];
+  static getCommunities = async () => {
+    return [madrid];
   };
 
-  static isLatLngInCountry = async (name: string, lat: number, lng: number) => {
+  static isLatLngInCommunity = async (
+    name: string,
+    lat: number,
+    lng: number
+  ) => {
     switch (name) {
-      case "spain":
-        return this.isLatLngInSpain(lat, lng);
+      case "madrid":
+        return this.isLatLngInMadrid(lat, lng);
       default:
         return false;
     }
@@ -35,30 +37,23 @@ export class CountryModel {
    * @param lng
    * @returns
    */
-  static isLatLngInSpain = (lat: number, lng: number) => {
+  static isLatLngInMadrid = (lat: number, lng: number) => {
     let isInside = false;
 
-    for (let i = 0; i < spain.features.length; i++) {
-      const geometryType = spain.features[i].geometry.type;
+    for (let i = 0; i < madrid.features.length; i++) {
+      const geometryType = madrid.features[i].geometry.type;
 
-      if (geometryType === "Polygon") {
-        const polygon: number[][] = spain.features[i].geometry
-          .coordinates[0] as number[][];
-
-        const path = this.convertPolygonToPath(polygon);
-
-        isInside = CountryModel.inside(lat, lng, path);
-      } else if (geometryType === "MultiPolygon") {
+      if (geometryType === "MultiPolygon") {
         for (
           let j = 0;
-          j < spain.features[i].geometry.coordinates.length;
+          j < madrid.features[i].geometry.coordinates.length;
           j++
         ) {
-          const polygon: number[][] = spain.features[i].geometry.coordinates[
+          const polygon: number[][] = madrid.features[i].geometry.coordinates[
             j
           ][0] as number[][];
           const path = this.convertPolygonToPath(polygon);
-          isInside = CountryModel.inside(lat, lng, path);
+          isInside = CommunityModel.inside(lat, lng, path);
           if (isInside) {
             return isInside;
           }

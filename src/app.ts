@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express, { Request, Response, Application } from "express";
 import { countriesRouter } from "./routes/countries";
 import { corsMiddleware } from "./middlewares/cors";
+import { communitiesRouter } from "./routes/communities";
 
 //For env File
 dotenv.config();
@@ -28,6 +29,7 @@ app.get("/", (req: Request, res: Response) => {
 
 // Routes
 app.use("/countries", countriesRouter);
+app.use("/communities", communitiesRouter);
 
 // Error handling
 // app.use(errorHandler); No está funcionando

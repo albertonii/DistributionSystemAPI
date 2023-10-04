@@ -1,0 +1,30 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [-2.950577, 35.265458],
+              [-2.970316, 35.288651],
+              [-2.952625, 35.320288],
+              [-2.923292, 35.290191],
+              [-2.950577, 35.265458]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "cod_ccaa": "19",
+        "noml_ccaa": "CIUDAD DE MELILLA",
+        "name": "Melilla",
+        "cartodb_id": 14,
+        "created_at": "2014-09-30T00:00:00Z",
+        "updated_at": "2014-12-25T02:07:41Z"
+      }
+    }
+  ]
+}
