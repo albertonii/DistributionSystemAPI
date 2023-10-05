@@ -28,7 +28,7 @@ export enum Community {
   VALENCIA = "valencia",
 }
 
-export enum Provinces {
+export enum Province {
   ALMERIA = "almeria",
   CADIZ = "cadiz",
   CORDOBA = "cordoba",
