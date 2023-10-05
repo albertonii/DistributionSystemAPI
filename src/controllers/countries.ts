@@ -8,9 +8,9 @@ export class CountryController {
     res.json(country);
   }
 
-  static async getCountries() {
+  static async getCountries(req: Request, res: Response) {
     const countries = await CountryModel.getCountries();
-    return countries;
+    return res.json(countries);
   }
 
   static async isLatLngInCountry(req: Request, res: Response) {
