@@ -18,11 +18,12 @@ export class ProvincesController {
   }
 
   static async isLatLngInProvinces(req: Request, res: Response) {
-    const { nameCommunity, nameProvince } = req.params;
+    const { communityName, provinceName } = req.params;
     const { lat, lng } = req.query;
+
     const isLatLngInProvinces = await ProvinceModel.isLatLngInProvince(
-      nameCommunity,
-      nameProvince,
+      communityName,
+      provinceName,
       Number(lat),
       Number(lng)
     );

@@ -249,14 +249,47 @@ export class ProvinceModel {
     lng: number
   ) => {
     switch (nameCommunity) {
-      case "madrid":
+      case Community.MADRID:
         return this.isLatLngInMadrid(lat, lng);
-      //   case "andalucia":
-      //     return this.isLatLngInAndalucia(lat, lng);
-      //   case "asturias":
-      //     return this.isLatLngInAsturias(lat, lng);
-      //   case "aragon":
-      //     return this.isLatLngInAragon(lat, lng);
+
+      case Community.ANDALUCIA: {
+        switch (nameProvince) {
+          case Province.ALMERIA:
+            return this.isLatLngInAlmeria(lat, lng);
+          case Province.CADIZ:
+            return this.isLatLngInCadiz(lat, lng);
+          case Province.CORDOBA:
+            return this.isLatLngInCordoba(lat, lng);
+          case Province.GRANADA:
+            return this.isLatLngInGranada(lat, lng);
+          case Province.HUELVA:
+            return this.isLatLngInHuelva(lat, lng);
+          case Province.JAEN:
+            return this.isLatLngInJaen(lat, lng);
+          case Province.MALAGA:
+            return this.isLatLngInMalaga(lat, lng);
+          case Province.SEVILLA:
+            return this.isLatLngInSevilla(lat, lng);
+          default:
+            return false;
+        }
+      }
+
+      case Community.ASTURIAS:
+        return this.isLatLngInAsturias(lat, lng);
+
+      case Community.ARAGON: {
+        switch (nameProvince) {
+          case Province.HUESCA:
+            return this.isLatLngInHuesca(lat, lng);
+          case Province.TERUEL:
+            return this.isLatLngInTeruel(lat, lng);
+          case Province.ZARAGOZA:
+            return this.isLatLngInZaragoza(lat, lng);
+          default:
+            return false;
+        }
+      }
       //   case "balearic_islands":
       //     return this.isLatLngInBalearicIslands(lat, lng);
       //   case "basque_country":
@@ -283,8 +316,8 @@ export class ProvinceModel {
       //     return this.isLatLngInMelilla(lat, lng);
       //   case "murcia":
       //     return this.isLatLngInMurcia(lat, lng);
-      //   case "navarra":
-      //     return this.isLatLngInNavarra(lat, lng);
+      case Community.NAVARRA:
+        return this.isLatLngInNavarra(lat, lng);
       //   case "valencia":
       //     return this.isLatLngInValencia(lat, lng);
 
@@ -313,6 +346,457 @@ export class ProvinceModel {
           j++
         ) {
           const polygon: number[][] = madrid.features[i].geometry.coordinates[
+            j
+          ][0] as number[][];
+
+          const path = this.convertPolygonToPath(polygon);
+          isInside = ProvinceModel.inside(lat, lng, path);
+          if (isInside) {
+            return isInside;
+          }
+        }
+      }
+    }
+
+    return isInside;
+  };
+
+  /**
+   * Polygon is Almería
+   * MultiPolygon
+   * @param lat
+   * @param lng
+   * @returns
+   */
+  static isLatLngInAlmeria = (lat: number, lng: number) => {
+    let isInside = false;
+
+    for (let i = 0; i < almeria.features.length; i++) {
+      const geometryType = almeria.features[i].geometry.type;
+
+      if (geometryType === "MultiPolygon") {
+        for (
+          let j = 0;
+          j < almeria.features[i].geometry.coordinates.length;
+          j++
+        ) {
+          const polygon: number[][] = almeria.features[i].geometry.coordinates[
+            j
+          ][0] as number[][];
+
+          const path = this.convertPolygonToPath(polygon);
+          isInside = ProvinceModel.inside(lat, lng, path);
+          if (isInside) {
+            return isInside;
+          }
+        }
+      }
+    }
+
+    return isInside;
+  };
+
+  /**
+   * Polygon is Cádiz
+   * MultiPolygon
+   * @param lat
+   * @param lng
+   * @returns
+   */
+  static isLatLngInCadiz = (lat: number, lng: number) => {
+    let isInside = false;
+
+    for (let i = 0; i < cadiz.features.length; i++) {
+      const geometryType = cadiz.features[i].geometry.type;
+
+      if (geometryType === "MultiPolygon") {
+        for (
+          let j = 0;
+          j < cadiz.features[i].geometry.coordinates.length;
+          j++
+        ) {
+          const polygon: number[][] = cadiz.features[i].geometry.coordinates[
+            j
+          ][0] as number[][];
+
+          const path = this.convertPolygonToPath(polygon);
+          isInside = ProvinceModel.inside(lat, lng, path);
+          if (isInside) {
+            return isInside;
+          }
+        }
+      }
+    }
+
+    return isInside;
+  };
+
+  /**
+   * Polygon is Córdoba
+   * MultiPolygon
+   * @param lat
+   * @param lng
+   * @returns
+   */
+  static isLatLngInCordoba = (lat: number, lng: number) => {
+    let isInside = false;
+
+    for (let i = 0; i < cordoba.features.length; i++) {
+      const geometryType = cordoba.features[i].geometry.type;
+
+      if (geometryType === "MultiPolygon") {
+        for (
+          let j = 0;
+          j < cordoba.features[i].geometry.coordinates.length;
+          j++
+        ) {
+          const polygon: number[][] = cordoba.features[i].geometry.coordinates[
+            j
+          ][0] as number[][];
+
+          const path = this.convertPolygonToPath(polygon);
+          isInside = ProvinceModel.inside(lat, lng, path);
+          if (isInside) {
+            return isInside;
+          }
+        }
+      }
+    }
+
+    return isInside;
+  };
+
+  /**
+   * Polygon is Granada
+   * MultiPolygon
+   * @param lat
+   * @param lng
+   * @returns
+   */
+  static isLatLngInGranada = (lat: number, lng: number) => {
+    let isInside = false;
+
+    for (let i = 0; i < granada.features.length; i++) {
+      const geometryType = granada.features[i].geometry.type;
+
+      if (geometryType === "MultiPolygon") {
+        for (
+          let j = 0;
+          j < granada.features[i].geometry.coordinates.length;
+          j++
+        ) {
+          const polygon: number[][] = granada.features[i].geometry.coordinates[
+            j
+          ][0] as number[][];
+
+          const path = this.convertPolygonToPath(polygon);
+          isInside = ProvinceModel.inside(lat, lng, path);
+          if (isInside) {
+            return isInside;
+          }
+        }
+      }
+    }
+
+    return isInside;
+  };
+
+  /**
+   * Polygon is Huelva
+   * MultiPolygon
+   * @param lat
+   * @param lng
+   * @returns
+   */
+  static isLatLngInHuelva = (lat: number, lng: number) => {
+    let isInside = false;
+
+    for (let i = 0; i < huelva.features.length; i++) {
+      const geometryType = huelva.features[i].geometry.type;
+
+      if (geometryType === "MultiPolygon") {
+        for (
+          let j = 0;
+          j < huelva.features[i].geometry.coordinates.length;
+          j++
+        ) {
+          const polygon: number[][] = huelva.features[i].geometry.coordinates[
+            j
+          ][0] as number[][];
+
+          const path = this.convertPolygonToPath(polygon);
+          isInside = ProvinceModel.inside(lat, lng, path);
+          if (isInside) {
+            return isInside;
+          }
+        }
+      }
+    }
+
+    return isInside;
+  };
+
+  /**
+   * Polygon is Jaén
+   * MultiPolygon
+   * @param lat
+   * @param lng
+   * @returns
+   */
+  static isLatLngInJaen = (lat: number, lng: number) => {
+    let isInside = false;
+
+    for (let i = 0; i < jaen.features.length; i++) {
+      const geometryType = jaen.features[i].geometry.type;
+
+      if (geometryType === "MultiPolygon") {
+        for (let j = 0; j < jaen.features[i].geometry.coordinates.length; j++) {
+          const polygon: number[][] = jaen.features[i].geometry.coordinates[
+            j
+          ][0] as number[][];
+
+          const path = this.convertPolygonToPath(polygon);
+          isInside = ProvinceModel.inside(lat, lng, path);
+          if (isInside) {
+            return isInside;
+          }
+        }
+      }
+    }
+
+    return isInside;
+  };
+
+  /**
+   * Polygon is Málaga
+   * MultiPolygon
+   * @param lat
+   * @param lng
+   * @returns
+   */
+  static isLatLngInMalaga = (lat: number, lng: number) => {
+    let isInside = false;
+
+    for (let i = 0; i < malaga.features.length; i++) {
+      const geometryType = malaga.features[i].geometry.type;
+
+      if (geometryType === "MultiPolygon") {
+        for (
+          let j = 0;
+          j < malaga.features[i].geometry.coordinates.length;
+          j++
+        ) {
+          const polygon: number[][] = malaga.features[i].geometry.coordinates[
+            j
+          ][0] as number[][];
+
+          const path = this.convertPolygonToPath(polygon);
+          isInside = ProvinceModel.inside(lat, lng, path);
+          if (isInside) {
+            return isInside;
+          }
+        }
+      }
+    }
+
+    return isInside;
+  };
+
+  /**
+   * Polygon is Sevilla
+   * MultiPolygon
+   * @param lat
+   * @param lng
+   * @returns
+   */
+  static isLatLngInSevilla = (lat: number, lng: number) => {
+    let isInside = false;
+
+    for (let i = 0; i < sevilla.features.length; i++) {
+      const geometryType = sevilla.features[i].geometry.type;
+
+      if (geometryType === "MultiPolygon") {
+        for (
+          let j = 0;
+          j < sevilla.features[i].geometry.coordinates.length;
+          j++
+        ) {
+          const polygon: number[][] = sevilla.features[i].geometry.coordinates[
+            j
+          ][0] as number[][];
+
+          const path = this.convertPolygonToPath(polygon);
+          isInside = ProvinceModel.inside(lat, lng, path);
+          if (isInside) {
+            return isInside;
+          }
+        }
+      }
+    }
+
+    return isInside;
+  };
+
+  /**
+   * Polygon is Asturias
+   * MultiPolygon
+   * @param lat
+   * @param lng
+   * @returns
+   */
+  static isLatLngInAsturias = (lat: number, lng: number) => {
+    let isInside = false;
+
+    for (let i = 0; i < asturias.features.length; i++) {
+      const geometryType = asturias.features[i].geometry.type;
+
+      if (geometryType === "MultiPolygon") {
+        for (
+          let j = 0;
+          j < asturias.features[i].geometry.coordinates.length;
+          j++
+        ) {
+          const polygon: number[][] = asturias.features[i].geometry.coordinates[
+            j
+          ][0] as number[][];
+
+          const path = this.convertPolygonToPath(polygon);
+          isInside = ProvinceModel.inside(lat, lng, path);
+          if (isInside) {
+            return isInside;
+          }
+        }
+      }
+    }
+
+    return isInside;
+  };
+
+  /**
+   * Polygon is Huesca
+   * MultiPolygon
+   * @param lat
+   * @param lng
+   * @returns
+   */
+  static isLatLngInHuesca = (lat: number, lng: number) => {
+    let isInside = false;
+
+    for (let i = 0; i < huesca.features.length; i++) {
+      const geometryType = huesca.features[i].geometry.type;
+
+      if (geometryType === "MultiPolygon") {
+        for (
+          let j = 0;
+          j < huesca.features[i].geometry.coordinates.length;
+          j++
+        ) {
+          const polygon: number[][] = huesca.features[i].geometry.coordinates[
+            j
+          ][0] as number[][];
+
+          const path = this.convertPolygonToPath(polygon);
+          isInside = ProvinceModel.inside(lat, lng, path);
+          if (isInside) {
+            return isInside;
+          }
+        }
+      }
+    }
+
+    return isInside;
+  };
+
+  /**
+   * Polygon is Teruel
+   * MultiPolygon
+   * @param lat
+   * @param lng
+   * @returns
+   */
+  static isLatLngInTeruel = (lat: number, lng: number) => {
+    let isInside = false;
+
+    for (let i = 0; i < teruel.features.length; i++) {
+      const geometryType = teruel.features[i].geometry.type;
+
+      if (geometryType === "MultiPolygon") {
+        for (
+          let j = 0;
+          j < teruel.features[i].geometry.coordinates.length;
+          j++
+        ) {
+          const polygon: number[][] = teruel.features[i].geometry.coordinates[
+            j
+          ][0] as number[][];
+
+          const path = this.convertPolygonToPath(polygon);
+          isInside = ProvinceModel.inside(lat, lng, path);
+          if (isInside) {
+            return isInside;
+          }
+        }
+      }
+    }
+
+    return isInside;
+  };
+
+  /**
+   * Polygon is Zaragoza
+   * MultiPolygon
+   * @param lat
+   * @param lng
+   * @returns
+   */
+  static isLatLngInZaragoza = (lat: number, lng: number) => {
+    let isInside = false;
+
+    for (let i = 0; i < zaragoza.features.length; i++) {
+      const geometryType = zaragoza.features[i].geometry.type;
+
+      if (geometryType === "MultiPolygon") {
+        for (
+          let j = 0;
+          j < zaragoza.features[i].geometry.coordinates.length;
+          j++
+        ) {
+          const polygon: number[][] = zaragoza.features[i].geometry.coordinates[
+            j
+          ][0] as number[][];
+
+          const path = this.convertPolygonToPath(polygon);
+          isInside = ProvinceModel.inside(lat, lng, path);
+          if (isInside) {
+            return isInside;
+          }
+        }
+      }
+    }
+
+    return isInside;
+  };
+
+  /**
+   * Polygon is Navarra
+   * MultiPolygon
+   * @param lat
+   * @param lng
+   * @returns
+   */
+  static isLatLngInNavarra = (lat: number, lng: number) => {
+    let isInside = false;
+
+    for (let i = 0; i < navarra.features.length; i++) {
+      const geometryType = navarra.features[i].geometry.type;
+
+      if (geometryType === "MultiPolygon") {
+        for (
+          let j = 0;
+          j < navarra.features[i].geometry.coordinates.length;
+          j++
+        ) {
+          const polygon: number[][] = navarra.features[i].geometry.coordinates[
             j
           ][0] as number[][];
 

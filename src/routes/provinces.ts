@@ -9,6 +9,6 @@ provincesRouter.get(
   ProvincesController.getProvince
 );
 provincesRouter.get(
-  "/:communityName/provinceName/inside",
+  "/:communityName/:provinceName/inside",
   ProvincesController.isLatLngInProvinces
 );

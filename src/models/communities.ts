@@ -67,7 +67,6 @@ export class CommunityModel {
   };
 
   static getCommunities = async () => {
-    console.log(madrid);
     return [madrid];
   };
 
