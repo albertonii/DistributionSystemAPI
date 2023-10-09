@@ -34,6 +34,26 @@ describe("Countries", () => {
     });
   });
 
+  describe("Name of the country is case sensitive v1", () => {
+    it("It should get Spain data - with S uppercase", async () => {
+      const res = await request(app).get("/countries/Spain");
+      const spain = res.body;
+
+      expect(res.statusCode).toBe(200);
+      expect(spain.features[0].type).toEqual("Feature");
+    });
+  });
+
+  describe("Name of the country is case sensitive v2", () => {
+    it("It should get Spain data - with uppercases", async () => {
+      const res = await request(app).get("/countries/SPAIN");
+      const spain = res.body;
+
+      expect(res.statusCode).toBe(200);
+      expect(spain.features[0].type).toEqual("Feature");
+    });
+  });
+
   describe("Spain have three coordinates - Mainland, Balearic Islands and Canary Islands", () => {
     it("It should response the GET method", async () => {
       const res = await request(app).get("/countries/spain");

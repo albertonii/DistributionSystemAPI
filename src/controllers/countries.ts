@@ -4,7 +4,11 @@ import { CountryModel } from "../models/countries";
 export class CountryController {
   static async getCountry(req: Request, res: Response) {
     const { name } = req.params;
-    const country = await CountryModel.getCountry(name);
+
+    // Lowercase the name to avoid case sensitive issues
+    const lName = name.toLowerCase();
+
+    const country = await CountryModel.getCountry(lName);
     res.json(country);
   }
 
@@ -16,8 +20,12 @@ export class CountryController {
   static async isLatLngInCountry(req: Request, res: Response) {
     const { name } = req.params;
     const { lat, lng } = req.query;
+
+    // Lowercase the name to avoid case sensitive issues
+    const lName = name.toLowerCase();
+
     const isLatLngInCountry = await CountryModel.isLatLngInCountry(
-      name,
+      lName,
       Number(lat),
       Number(lng)
     );

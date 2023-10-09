@@ -4,7 +4,11 @@ import { CommunityModel } from "../models/communities";
 export class CommunitiesController {
   static async getCommunity(req: Request, res: Response) {
     const { name } = req.params;
-    const communities = await CommunityModel.getCommunity(name);
+
+    // Lowercase the name to avoid case sensitive issues
+    const lName = name.toLowerCase();
+
+    const communities = await CommunityModel.getCommunity(lName);
     res.json(communities);
   }
 
@@ -15,9 +19,12 @@ export class CommunitiesController {
 
   static async isLatLngInCommunities(req: Request, res: Response) {
     const { name } = req.params;
+    // Lowercase the name to avoid case sensitive issues
+    const lName = name.toLowerCase();
+
     const { lat, lng } = req.query;
     const isLatLngInCommunities = await CommunityModel.isLatLngInCommunity(
-      name,
+      lName,
       Number(lat),
       Number(lng)
     );

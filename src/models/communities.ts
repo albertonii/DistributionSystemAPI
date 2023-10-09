@@ -67,7 +67,27 @@ export class CommunityModel {
   };
 
   static getCommunities = async () => {
-    return [madrid];
+    return [
+      andalucia,
+      asturias,
+      aragon,
+      balearic_islands,
+      basque_country,
+      canary_islands,
+      cantabria,
+      castilla_la_mancha,
+      castilla_leon,
+      catalunya,
+      ceuta,
+      extremadura,
+      galicia,
+      la_rioja,
+      madrid,
+      melilla,
+      murcia,
+      navarra,
+      valencia,
+    ];
   };
 
   static isLatLngInCommunity = async (
@@ -76,8 +96,6 @@ export class CommunityModel {
     lng: number
   ) => {
     switch (name) {
-      case "madrid":
-        return this.isLatLngInMadrid(lat, lng);
       case "andalucia":
         return this.isLatLngInAndalucia(lat, lng);
       case "asturias":
@@ -106,6 +124,8 @@ export class CommunityModel {
         return this.isLatLngInGalicia(lat, lng);
       case "la_rioja":
         return this.isLatLngInLaRioja(lat, lng);
+      case "madrid":
+        return this.isLatLngInMadrid(lat, lng);
       case "melilla":
         return this.isLatLngInMelilla(lat, lng);
       case "murcia":
