@@ -6,27 +6,36 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/app.js",
-    "dev": "nodemon ./src/app.ts"
+    "dev": "nodemon ./src/server.ts",
+    "test": "NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules jest --testTimeout=5000 --detectOpenHandles --coverage"
   },
   "keywords": [],
   "author": "alberto.niironen",
   "license": "ISC",
   "dependencies": {
-    "@types/geojson": "^7946.0.11",
-    "@types/node": "^20.8.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "node-geometry-library": "^1.2.6"
+    "@types/geojson": "7946.0.11",
+    "@types/node": "20.8.0",
+    "cors": "2.8.5",
+    "dotenv": "16.3.1",
+    "express": "4.18.2",
+    "node-geometry-library": "1.2.6"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.14",
-    "@types/express": "^4.17.18",
-    "nodemon": "^3.0.1",
-    "standard": "^17.1.0",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.2.2",
-    "zod": "^3.22.2"
+    "@types/cors": "2.8.14",
+    "@types/express": "4.17.18",
+    "@types/jest": "^29.5.5",
+    "@types/supertest": "^2.0.14",
+    "babel-cli": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "jest": "29.7.0",
+    "nodemon": "3.0.1",
+    "standard": "17.1.0",
+    "superagent": "8.1.2",
+    "supertest": "6.3.3",
+    "ts-jest": "^29.1.1",
+    "ts-node-dev": "2.0.0",
+    "typescript": "5.2.2",
+    "zod": "3.22.2"
   },
   "eslintConfig": {
     "extends": "standard"
