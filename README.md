@@ -25,11 +25,143 @@ Distribution System API surge por la necesidad de conocer cuales son los puntos 
 
 ### Request
 
-`GET /countries`
+## GET
+
+`Fetch data from country in GeoJSON format` /countries/${countryName} <br/>
+`Fetch data from Autonomous Community in Spain in GeoJSON format` /communities/${countryName} <br/>
+`Check if specific point [lat, lng] is inside Autonomous Community` /communities/${countryName}/inside?lat=[latitude]&lng=[longitude] <br/>
 
 ## Spain
 
+### Countries
+
+#### GET /countries/spain
+
+Get basics data in GeoJSON format from Spain country.
+
+**Parameters**
+URL:
+/countries/${countryName}
+
+|          Name | Required |  Type  | Description                                             |
+| ------------: | :------: | :----: | ------------------------------------------------------- |
+| `countryName` | required | string | The country that we want the GeoJSON information. <br/> |
+
+**Response**
+
+```json
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "SOVEREIGNT": "Spain",
+        "NOTE_BRK": null,
+        "NAME_SORT": "Canary Islands",
+
+        "MIN_ZOOM": 0,
+        "MIN_LABEL": 5,
+        "MAX_LABEL": 10
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [-17.88793945312497, 27.8095703125],
+              [-17.984765624999966, 27.64638671875005]
+            ]
+          ]
+        ]
+      }
+    },
+  ...
+]
+}
+```
+
 ### Autonomous Communities
+
+#### GET /communities/madrid
+
+Get basics data in GeoJSON format from Spain country.
+
+**Parameters**
+URL:
+/communities/${communityName}
+
+|            Name | Required |  Type  | Description                                                               |
+| --------------: | :------: | :----: | ------------------------------------------------------------------------- |
+| `communityName` | required | string | The Autonomous Community name that we want the GeoJSON information. <br/> |
+
+**Response**
+
+```json
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [-3.536705, 41.160576],
+              [-3.488751, 41.094294],
+              [-3.425805, 41.082899],
+              [-3.438935, 41.04267],
+              [-3.39445, 41.000278],
+              [-3.418296, 40.987564],
+              [-3.444062, 40.906849],
+              [-3.460577, 40.906659],
+              ...
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "cod_ccaa": "13",
+        "noml_ccaa": "COMUNIDAD DE MADRID",
+        "name": "Madrid",
+        "cartodb_id": 13,
+        "created_at": "2014-09-30T00:00:00Z",
+        "updated_at": "2014-12-25T02:07:41Z"
+      }
+    }
+  ]
+}
+```
+
+#### GET /communities/madrid?lat=[latitude]&lng=[longitude]
+
+Check if a point [lat,lng] is inside a polygon representing Autonomous Community of Madrid
+
+**Parameters**
+URL:
+/communities/${communityName}/inside?lat=-3.686062&lng=40.404208
+
+Point = [-3.686062, 40.404208] Represents Atocha located in Madrid
+
+|            Name | Required |  Type  | Description                                                               |
+| --------------: | :------: | :----: | ------------------------------------------------------------------------- |
+| `communityName` | required | string | The Autonomous Community name that we want the GeoJSON information. <br/> |
+|           `lat` | required | string | Latitude. <br/>                                                           |
+|           `lng` | required | string | Longitude. <br/>                                                          |
+
+**Response**
+If the point is inside polygon that represents the Autonomous Community then:
+
+```
+true
+```
+
+If the point is NOT inside polygon that represents the Autonomous Community then:
+
+```
+false
+```
 
 ### Provinces
 
@@ -79,3 +211,4 @@ https://distributionsystemapi-soyd-dev.fl0.io/
 - [ ] GeoJSON Portugal
 - [ ] GeoJSON Francia
 - [ ] GeoJSON Italia
+- [ ] Versioning --> https://www.codemzy.com/blog/nodejs-api-versioning
