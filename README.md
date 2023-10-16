@@ -11,6 +11,19 @@ Actualmente soporta los siguiente países:
 |------|------------------------|---------|
 | España | Comunidad Autónoma > Provincia > Municipio | SI |
 
+## Google Maps
+
+La API de Maps JavaScript usa los siguientes sistemas de coordenadas:
+
+- Valores de latitud y longitud que hacen referencia a un punto del planeta de manera inequívoca. (Google utiliza el estándar World Geodetic System WGS84).
+- Coordenadas mundiales que hacen referencia a un punto del mapa de manera inequívoca.
+- Coordenadas de píxeles, las cuales hacen referencia a píxeles específicos en el mapa con un nivel de zoom específico.
+- Coordenadas del mosaico, las cuales hacen referencia a un mosaico específico en el mapa con un nivel de zoom específico.
+
+### World Geodetic Sytem
+
+El Sistema Geodésico Mundial (WGS) es un estándar utilizado en cartografía, geodesia y navegación por satélite, incluido el GPS. La versión actual, WGS 84, define un sistema de coordenadas fijo centrado en la Tierra y un datum geodésico, y también describe el Modelo Gravitacional Terrestre (EGM) y el Modelo Magnético Mundial (WMM) asociados. El estándar es publicado y mantenido por la Agencia Nacional de Inteligencia Geoespacial de Estados Unidos.
+
 ## Motivation
 
 Distribution System API surge por la necesidad de conocer cuales son los puntos de distribución a los cuales un distribuidor puede realizar un envío.

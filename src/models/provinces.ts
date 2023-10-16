@@ -2140,6 +2140,8 @@ export class ProvinceModel {
   /**
    *
    * @param coordinates Coordinates is a GeoJSON format.
+   * coordinate[0] is longitude
+   * coordinate[1] is latitude
    * @example
    * const coordinates =
    * [
@@ -2157,7 +2159,7 @@ export class ProvinceModel {
     }
 
     const path: Path[] = coordinates.map((coordinate) => {
-      return { lat: coordinate[0], lng: coordinate[1] };
+      return { lat: coordinate[1], lng: coordinate[0] };
     });
 
     return path;

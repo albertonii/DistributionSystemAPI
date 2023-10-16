@@ -40,6 +40,7 @@ export class CountryModel {
 
     for (let i = 0; i < spain.features.length; i++) {
       const geometryType = spain.features[i].geometry.type;
+      console.log(geometryType);
 
       if (geometryType === "Polygon") {
         const polygon: number[][] = spain.features[i].geometry
@@ -72,6 +73,8 @@ export class CountryModel {
   /**
    *
    * @param coordinates Coordinates is a GeoJSON format.
+   * coordinate[0] is longitude
+   * coordinate[1] is latitude
    * @example
    * const coordinates =
    * [
@@ -89,17 +92,16 @@ export class CountryModel {
     }
 
     const path: Path[] = coordinates.map((coordinate) => {
-      return { lat: coordinate[0], lng: coordinate[1] };
+      return { lat: coordinate[1], lng: coordinate[0] };
     });
 
     return path;
   };
 
   static inside = (latitude: number, longitude: number, polygon: Path[]) => {
-    const isInside = PolyUtil.containsLocation(
-      { lat: latitude, lng: longitude },
-      polygon
-    );
+    const point: Path = { lat: latitude, lng: longitude };
+    const isInside = PolyUtil.containsLocation(point, polygon);
+
     return isInside;
   };
 }
