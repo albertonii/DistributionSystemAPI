@@ -34,7 +34,6 @@ export class CommunitiesController {
 
   static async jsonSpainCommunities(req: Request, res: Response) {
     const communities = await CommunityModel.jsonCommunities();
-    console.log(communities);
     res.json(communities);
   }
 }
