@@ -9,3 +9,7 @@ communitiesRouter.get(
   "/:name/inside",
   CommunitiesController.isLatLngInCommunities
 );
+communitiesRouter.get(
+  "/json/spain",
+  CommunitiesController.jsonSpainCommunities
+);

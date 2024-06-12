@@ -1,3 +1,4 @@
+import all_communities from "../data/spain/autonomous_communities/all_communities.json";
 import andalucia from "../data/spain/autonomous_communities/andalucia.json";
 import asturias from "../data/spain/autonomous_communities/asturias.json";
 import aragon from "../data/spain/autonomous_communities/aragon.json";
@@ -831,5 +832,32 @@ export class CommunityModel {
       polygon
     );
     return isInside;
+  };
+
+  /**
+   * JSON List of Autonomous Communities in Spain
+   */
+  static jsonCommunities = async () => {
+    return [
+      { id: 1, nombre: "Andalucía" },
+      { id: 2, nombre: "Aragón" },
+      { id: 3, nombre: "Asturias" },
+      { id: 4, nombre: "Islas Baleares" },
+      { id: 5, nombre: "Canarias" },
+      { id: 6, nombre: "Cantabria" },
+      { id: 7, nombre: "Castilla-La Mancha" },
+      { id: 8, nombre: "Castilla y León" },
+      { id: 9, nombre: "Cataluña" },
+      { id: 10, nombre: "Extremadura" },
+      { id: 11, nombre: "Galicia" },
+      { id: 12, nombre: "Madrid" },
+      { id: 13, nombre: "Murcia" },
+      { id: 14, nombre: "Navarra" },
+      { id: 15, nombre: "País Vasco" },
+      { id: 16, nombre: "La Rioja" },
+      { id: 17, nombre: "Valencia" },
+      { id: 18, nombre: "Ceuta" },
+      { id: 19, nombre: "Melilla" },
+    ];
   };
 }

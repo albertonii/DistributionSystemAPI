@@ -31,6 +31,7 @@ app.get("/", (req: Request, res: Response) => {
 app.use("/countries", countriesRouter);
 app.use("/communities", communitiesRouter);
 app.use("/provinces", provincesRouter);
+// app.use("/json_communities_spain");
 
 // Error handling
 // app.use(errorHandler); No está funcionando

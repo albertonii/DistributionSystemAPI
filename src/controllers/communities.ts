@@ -14,7 +14,7 @@ export class CommunitiesController {
 
   static async getCommunities(req: Request, res: Response) {
     const communities = await CommunityModel.getCommunities();
-    return res.json(communities);
+    res.json(communities);
   }
 
   static async isLatLngInCommunities(req: Request, res: Response) {
@@ -28,6 +28,13 @@ export class CommunitiesController {
       Number(lat),
       Number(lng)
     );
+
     res.json(isLatLngInCommunities);
+  }
+
+  static async jsonSpainCommunities(req: Request, res: Response) {
+    const communities = await CommunityModel.jsonCommunities();
+    console.log(communities);
+    res.json(communities);
   }
 }
